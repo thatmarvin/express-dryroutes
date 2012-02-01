@@ -67,7 +67,7 @@ app.configure('production', function () {
 var routes = {
   'route name': {
     path: '/url-path/:param1/:param2' 
-    regexp: /post\/(\d+)/([a-zA-Z0-9\-]+),
+    regexp: /post\/(\d+)/([a-zA-Z0-9\-]+)/,
     handlers: {
       get: function (req, res, next) {},
       post: [auth, controller.article.post]
@@ -85,7 +85,7 @@ var routes = {
 - `regexp`: _Optional_. The same regex object that gets passed into Express routes.
 - `handlers`: _Required_. Method names correspond to 'app.get/post/all/…()' as keys, and a middleware function or an array of middleware functions as values
 - `https`: _Optional_. Defaults to `false`. If https is truthy, the generated url will in https.
-- `enforceHttps`: _Optional_. Defaults to `false`. Sets up an automatic 301 redirect from http to https, automatically assumes that `https` is true.
+- `enforceHttps`: _Optional_. Defaults to `false`. Sets up an automatic 301 redirect from http to https; automatically assumes that `https` is true.
 
 
 #### Example:
@@ -167,28 +167,27 @@ Passed-in `params` are matched against the named params in the route path. Any n
 urlFor('user page', {
   params: {
     id: 'good-guy-greg',
-    foo: bar
-  }
+    foo: 'bar'
+  },
+  absolute: false
 })
 
 // https://localhost:3000/login
-urlFor('login', {
-  https: true
-})
+urlFor('login')
 ```
 
-- `params`: _Required for paths with named params_. Key-value pairs.
-- `absolute`: _Optional_. Generates an absolute URL (Note that HTTPS routes are always absolute).
+- `params`: _Required for paths with named params_. An object of key-value pairs.
+- `absolute`: _Optional_. Defaults to `false`. Generates an absolute URL (Note that HTTPS routes are always absolute).
 
 
 
 [Jade](https://github.com/visionmedia/jade) example:
 
 ```jade
-    // <a href="/item/8">View Item Name</a>
-    a(href=urlFor('item details', {
-      id: item.id
-    }) View #{item.name}
+// <a href="/item/8">View Item Name</a>
+a(href=urlFor('item details', {
+  id: item.id
+}) View #{item.name}
 ```
 
 Pull requests for other templating engines are welcome!
