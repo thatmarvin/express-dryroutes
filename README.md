@@ -67,7 +67,7 @@ app.configure('production', function () {
 var routes = {
   'route name': {
     path: '/url-path/:param1/:param2' 
-    regexp: /post\/(\d+)/([a-zA-Z0-9\-]+)/,
+    regexp: /post\/(\d+)\/([a-zA-Z0-9\-]+)/,
     handlers: {
       get: function (req, res, next) {},
       post: [auth, controller.article.post]
