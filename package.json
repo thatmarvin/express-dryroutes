@@ -1,0 +1,13 @@
+{
+  "name": "express-dryroutes",
+  "description": "Generates URLs from routes",
+  "version": "0.0.1",
+  "author": "Marvin Tam <marvintam@gmail.com>",
+  "main": "index.js",
+  "dependencies": {
+    "underscore": "1.x.x"
+  },
+  "devDependencies": {
+    "vows": ">0.0.1"
+  }
+}
