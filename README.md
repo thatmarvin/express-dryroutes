@@ -1,7 +1,5 @@
 # express-dryroutes
 
-_Generates URLs from routes._
-
 Provides an `urlFor()` [Express](https://github.com/visionmedia/express) view helper (minor inspiration from Ruby on Rails’ [`url_for`](http://api.rubyonrails.org/classes/ActionView/Helpers/UrlHelper.html#method-i-url_for)) to generate URLs based on named routes.
 
 Since Express does not natively provide a mechanism to assign routes names, an alternative syntax is used to define routes that Express still understands. Certain assumptions were made; so do file an issue (or send a pull request) if it hinders any native flexibility.
