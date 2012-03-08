@@ -4,7 +4,7 @@ Provides an `urlFor()` [Express](https://github.com/visionmedia/express) view he
 
 Since Express does not natively provide a mechanism to assign routes names, an alternative syntax is used to define routes that Express still understands. Certain assumptions were made; so do file an issue (or send a pull request) if it hinders any native flexibility.
 
-express-dryroutes also provides an option to define and enforce HTTPS routes. By default, a request is considered HTTPS if `req.connection.encrypted` is truthy or if `X-Forwarded-Protocol: https` header exists.
+express-dryroutes also provides an option to define and enforce HTTPS routes. By default, a request is considered HTTPS if `req.connection.encrypted` is truthy or if `X-Forwarded-Proto` header has a value of `https`.
 
 
 
