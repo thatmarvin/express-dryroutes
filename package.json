@@ -1,7 +1,7 @@
 {
   "name": "express-dryroutes",
-  "description": "Generates URLs from routes",
-  "version": "0.0.2",
+  "description": "Generates URLs from named Express routes",
+  "version": "0.0.3",
   "author": "Marvin Tam <marvintam@gmail.com>",
   "main": "index.js",
   "dependencies": {
