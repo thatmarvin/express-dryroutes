@@ -82,7 +82,7 @@ var routes = {
 - `path`: _Required_. This is used to generate all URLs.
 - `regexp`: _Optional_. The same regex object that gets passed into Express routes.
 - `handlers`: _Required_. Method names correspond to 'app.get/post/all/…()' as keys, and a middleware function or an array of middleware functions as values
-- `https`: _Optional_. Defaults to `false`. If https is truthy, the generated url will in https.
+- `https`: _Optional_. Defaults to `false`. If truthy, the _generated_ url will be in https (use `enforceHttps` to set up automatic redirect).
 - `enforceHttps`: _Optional_. Defaults to `false`. Sets up an automatic 301 redirect from http to https; automatically assumes that `https` is true.
 
 
