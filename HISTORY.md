@@ -1,3 +1,8 @@
+0.0.5 / 2012-03-21
+==================
+  * Expose urlFor() to require()
+  * When urlFor() is given an invalid route, simply output warning instead of throwing a show-stopping exception
+
 0.0.4 / 2012-03-08
 ==================
 
