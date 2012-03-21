@@ -194,4 +194,3 @@ Pull requests for other templating engines are welcome!
 
 ## TODOs:
 - Tests
-- Maybe expose require('express-dryroutes').urlFor()
