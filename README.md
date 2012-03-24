@@ -160,6 +160,11 @@ dryroutes(app, routes);
 
 Passed-in `params` are matched against the named params in the route path. Any non-matching params key-value pairs will be appended to the url as query strings as parsed by [`url.format()`](http://nodejs.org/docs/latest/api/url.html#url.format).
 
+If the path contains an optional named param (like `/path/:param?`) that wasn’t substituted, it will be removed along with the leading slash (becomes `/path`).
+
+Like in the example above, regex routes require a path with named params for this to work.
+
+
 ```js
 // /user/good-guy-greg?foo=bar
 urlFor('user page', {
