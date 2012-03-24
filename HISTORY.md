@@ -1,3 +1,7 @@
+0.0.6 / 2012-03-24
+==================
+  * Remove optional parameters that are not substituted out
+
 0.0.5 / 2012-03-21
 ==================
   * Expose urlFor() to require()
