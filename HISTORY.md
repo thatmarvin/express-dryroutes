@@ -1,3 +1,7 @@
+0.0.7 / 2012-03-26
+==================
+  * Make enforceHttps on urlFor() work correctly for routes without handlers
+
 0.0.6 / 2012-03-24
 ==================
   * Remove optional parameters that are not substituted out
