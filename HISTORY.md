@@ -1,3 +1,7 @@
+0.0.8 / 2012-05-11
+==================
+  * Add undocumented configuration option to globally toggle generating absolute urls for `urlFor()`
+
 0.0.7 / 2012-03-26
 ==================
   * Make enforceHttps on urlFor() work correctly for routes without handlers
