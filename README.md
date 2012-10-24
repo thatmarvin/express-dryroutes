@@ -199,3 +199,4 @@ Pull requests for other templating engines are welcome!
 
 ## TODOs:
 - Tests
+- Express 3 compatibility
