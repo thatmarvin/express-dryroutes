@@ -1,3 +1,8 @@
+0.0.9 / 2013-05-21
+==================
+  * Added tests
+  * Fix thrown error when X-Forwarded-Proto is not set
+
 0.0.8 / 2012-05-11
 ==================
   * Add undocumented configuration option to globally toggle generating absolute urls for `urlFor()`
