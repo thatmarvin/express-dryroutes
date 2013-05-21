@@ -195,8 +195,9 @@ a(href=urlFor('item details', {
 
 Pull requests for other templating engines are welcome!
 
+## Test
 
+`npm test` will invoke an Express server instance and run a few tests against it.
 
 ## TODOs:
-- Tests
 - Express 3 compatibility
