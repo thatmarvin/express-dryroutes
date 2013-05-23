@@ -1,3 +1,7 @@
+0.0.10 / 2013-05-23
+==================
+  * Add experimental feature to enforce HTTPS on all routes by default
+
 0.0.9 / 2013-05-21
 ==================
   * Added tests
