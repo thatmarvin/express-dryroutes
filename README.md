@@ -1,8 +1,8 @@
 # express-dryroutes
 
-Provides an `urlFor()` [Express](https://github.com/visionmedia/express) view helper (minor inspiration from Ruby on Rails’ [`url_for`](http://api.rubyonrails.org/classes/ActionView/Helpers/UrlHelper.html#method-i-url_for)) to generate URLs based on named routes.
+Provides an `urlFor()` [Express](https://github.com/visionmedia/express) view helper (minor inspiration from Rails’ [`url_for`](http://api.rubyonrails.org/classes/ActionView/Helpers/UrlHelper.html#method-i-url_for)) to generate URLs based on named routes.
 
-Since Express does not natively provide a mechanism to assign routes names, an alternative syntax is used to define routes that Express still understands. Certain assumptions were made; so do file an issue (or send a pull request) if it hinders any native flexibility.
+Since Express does not natively provide a mechanism to assign routes names, an alternative syntax is used to define routes that Express still understands. Do file an issue (or send a pull request) if it hinders any native flexibility!
 
 express-dryroutes also provides an option to define and enforce HTTPS routes. By default, a request is considered HTTPS if `req.connection.encrypted` is truthy or if `X-Forwarded-Proto` header has a value of `https`.
 
@@ -16,7 +16,7 @@ express-dryroutes also provides an option to define and enforce HTTPS routes. By
 
 ## Caveats
 
-This was only tested on Express 2.5.5.
+This only works on Express 2.x.
 
 The `*` catch-all route and `app.error` behaves differently. If you need to use it, do it using the usual Express way (if you need named error page routes, you‘re probably doing it wrong). 
 
@@ -53,8 +53,8 @@ app.configure('production', function () {
 });
 ```
 
-- `host`: _Required_. This is used to generate absolute URLs. Corresponds to the `host` in the [`url`](http://nodejs.org/docs/latest/api/url.html) module.
-- `isHttps`: _Optional_. Pass in `function (req) { … }` that returns a boolean if you need custom logic to determine if an incoming request is HTTPS.
+- `host`: _required_. This is used to generate absolute URLs. Corresponds to the `host` in the [`url`](http://nodejs.org/docs/latest/api/url.html) module.
+- `isHttps`: _optional_. Pass in `function (req) { … }` that returns a boolean if you need custom logic to determine if an incoming request is HTTPS.
 
 
 ### Define Routes
@@ -79,11 +79,11 @@ var routes = {
 }
 ```
 
-- `path`: _Required_. This is used to generate all URLs.
-- `regexp`: _Optional_. The same regex object that gets passed into Express routes.
-- `handlers`: _Required_. Method names correspond to 'app.get/post/all/…()' as keys, and a middleware function or an array of middleware functions as values
-- `https`: _Optional_. Defaults to `false`. If truthy, the _generated_ url will be in https (use `enforceHttps` to set up automatic redirect).
-- `enforceHttps`: _Optional_. Defaults to `false`. Sets up an automatic 301 redirect from http to https; automatically assumes that `https` is true.
+- `path`: _required_. This is used to generate all URLs.
+- `regexp`: _optional_. The same regex object that gets passed into Express routes.
+- `handlers`: _required_. Method names correspond to 'app.get/post/all/…()' as keys, and a middleware function or an array of middleware functions as values
+- `https`: _optional_. Defaults to `false`. If truthy, the _generated_ url will be in https (use `enforceHttps` to set up automatic redirect).
+- `enforceHttps`: _optional_. Defaults to `false`. Sets up an automatic 301 redirect from http to https; automatically assumes that `https` is true.
 
 
 #### Example:
@@ -179,8 +179,8 @@ urlFor('user page', {
 urlFor('login')
 ```
 
-- `params`: _Required for paths with named params_. An object of key-value pairs.
-- `absolute`: _Optional_. Defaults to `false`. Generates an absolute URL (Note that HTTPS routes are always absolute).
+- `params`: _required for paths with named params_. An object of key-value pairs.
+- `absolute`: _optional_. Defaults to `false`. Generates an absolute URL (Note that HTTPS routes are always absolute).
 
 
 
