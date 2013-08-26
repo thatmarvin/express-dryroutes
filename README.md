@@ -6,9 +6,9 @@ Provides an `urlFor()` [Express](https://github.com/visionmedia/express) view he
 
 Since Express does not natively provide a mechanism to assign routes names, an alternative syntax is used to define routes that Express still understands. Do file an issue (or send a pull request) if it hinders any native flexibility!
 
-express-dryroutes also provides an option to define and enforce HTTPS routes. By default, a request is considered HTTPS if `req.connection.encrypted` is truthy or if `X-Forwarded-Proto` header has a value of `https`.
+express-dryroutes also provides an option to define and enforce HTTPS routes. By default, a request is considered HTTPS if `req.secure` is true. You might need to turn on [`trust proxy`](http://expressjs.com/api.html#app-settings) for this to work.
 
-
+Express 3 is supported from 1.0.0.
 
 ## Install
 
@@ -18,17 +18,13 @@ express-dryroutes also provides an option to define and enforce HTTPS routes. By
 
 ## Caveats
 
-This only works on Express 2.x.
-
-The `*` catch-all route and `app.error` behaves differently. If you need to use it, do it using the usual Express way (if you need named error page routes, you‘re probably doing it wrong). 
+The `*` catch-all route behaves differently. If you need to use it, do it using the usual Express way (if you need named error page routes, you‘re probably doing it wrong). 
 
 ```js
-app.all('*', function (req, res) {
+app.all('*', function (req, res, next) {
   // 404 Not found
   controllers.error(req, res, 404);
 });
-
-app.error(function (err, req, res) {});
 ```
 
 
@@ -41,10 +37,7 @@ var dryroutes = require('express-dryroutes');
 
 app.configure('development', function () {
   dryroutes.configure({
-    host: 'example.local:3000',
-    isHttps: function (req) {
-      return (req.header('x-custom-header') === 'on');
-    }
+    host: 'example.local:3000'
   });
 });
 
@@ -55,8 +48,7 @@ app.configure('production', function () {
 });
 ```
 
-- `host`: _required_. This is used to generate absolute URLs. Corresponds to the `host` in the [`url`](http://nodejs.org/docs/latest/api/url.html) module.
-- `isHttps`: _optional_. Pass in `function (req) { … }` that returns a boolean if you need custom logic to determine if an incoming request is HTTPS.
+- `host`: _required_. This is used to generate absolute URLs. Corresponds to `host` in the [`url`](http://nodejs.org/docs/latest/api/url.html) module.
 
 
 ### Define Routes
@@ -200,6 +192,3 @@ Pull requests for other templating engines are welcome!
 ## Test
 
 `npm test` will invoke an Express server instance and run a few tests against it.
-
-## TODOs:
-- Express 3 compatibility
