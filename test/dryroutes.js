@@ -1,14 +1,17 @@
 var should = require('chai').should();
 var url = require('url');
 var dryroutes = require('../');
-var app = require('express').createServer();
-var request = require('request');
 
+var express = require('express');
+var app = express();
+var http = require('http');
+var request = require('request');
 var PORT = 8080;
 
 dryroutes.configure({
   host: 'localhost:' + PORT
 });
+
 
 function getUrl(path, https) {
   return url.format({
@@ -53,6 +56,10 @@ dryroutes(app, {
       }
     },
     enforceHttps: true
+  },
+
+  'register': {
+    path: '/account#/register'
   }
 
 });
@@ -104,12 +111,21 @@ describe('urlFor()', function () {
       url.should.equal('/users/42?foo=bar');
     });
   });
+
+  describe('when the path has a hash', function () {
+    it('should construct the query and hash params correctly', function () {
+      var url = dryroutes.urlFor('register', {
+        params: { foo: 'bar' }
+      });
+      url.should.equal('/account?foo=bar#/register');
+    });
+  });
 });
 
 
 describe('express routes', function () {
   before(function (done) {
-    app.listen(PORT, function () {
+    http.createServer(app).listen(PORT, function () {
       done();
     });
   });
