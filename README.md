@@ -1,6 +1,6 @@
 # express-dryroutes
 
-[![Build Status](https://secure.travis-ci.org/thatmarvin/express-dryroutes.png)](http://travis-ci.org/thatmarvin/express-dryroutes)
+[![Build Status](http://img.shields.io/travis/thatmarvin/express-dryroutes.svg)](http://travis-ci.org/thatmarvin/express-dryroutes)
 
 Provides an `urlFor()` [Express](https://github.com/visionmedia/express) view helper (minor inspiration from Rails’ [`url_for`](http://api.rubyonrails.org/classes/ActionView/Helpers/UrlHelper.html#method-i-url_for)) to generate URLs based on named routes.
 
