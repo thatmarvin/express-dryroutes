@@ -26,7 +26,7 @@ dryroutes(app, {
   'home': {
     path: '/',
     handlers: {
-      get: function (req, res, next) {
+      get(req, res, next) {
         res.end('home');
       }
     }
@@ -37,10 +37,10 @@ dryroutes(app, {
     regexp: /^\/users\/([a-z0-9]+)/,
     handlers: {
       get: [
-        function (req, res, next) {
+        (req, res, next) => {
           next();
         },
-        function (req, res, next) {
+        (req, res, next) => {
           var id = req.params[0];
           res.end('user ' + id + ' details');
         }
@@ -51,7 +51,7 @@ dryroutes(app, {
   'login': {
     path: '/login',
     handlers: {
-      get: function (req, res, next) {
+      get(req, res, next) {
         return res.end('login');
       }
     },
@@ -65,16 +65,16 @@ dryroutes(app, {
 });
 
 
-describe('urlFor()', function () {
-  describe('when getting a plain http url', function () {
-    it('should return the relative url', function () {
+describe('urlFor()', () => {
+  describe('when getting a plain http url', () => {
+    it('should return the relative url', () => {
       var url = dryroutes.urlFor('home');
       url.should.equal('/');
     });
   });
 
-  describe('when absolute: true', function () {
-    it('should return the absolute url', function () {
+  describe('when absolute: true', () => {
+    it('should return the absolute url', () => {
       var url = dryroutes.urlFor('home', {
         absolute: true
       });
@@ -82,8 +82,8 @@ describe('urlFor()', function () {
     });
   });
 
-  describe('when passing in key:values in params', function () {
-    it('should return the url with the values', function () {
+  describe('when passing in key:values in params', () => {
+    it('should return the url with the values', () => {
       var url = dryroutes.urlFor('user details', {
         params: {
           id: 42
@@ -93,15 +93,15 @@ describe('urlFor()', function () {
     });
   });
 
-  describe('when getting a https-enforced route', function () {
-    it('should return the https url', function () {
+  describe('when getting a https-enforced route', () => {
+    it('should return the https url', () => {
       var url = dryroutes.urlFor('login');
       url.should.equal(getUrl('/login', true));
     });
   });
 
-  describe('when passing in extra params', function () {
-    it('should append them as query params', function () {
+  describe('when passing in extra params', () => {
+    it('should append them as query params', () => {
       var url = dryroutes.urlFor('user details', {
         params: {
           id: 42,
@@ -112,8 +112,8 @@ describe('urlFor()', function () {
     });
   });
 
-  describe('when the path has a hash', function () {
-    it('should construct the query and hash params correctly', function () {
+  describe('when the path has a hash', () => {
+    it('should construct the query and hash params correctly', () => {
       var url = dryroutes.urlFor('register', {
         params: { foo: 'bar' }
       });
@@ -123,17 +123,17 @@ describe('urlFor()', function () {
 });
 
 
-describe('express routes', function () {
-  before(function (done) {
-    http.createServer(app).listen(PORT, function () {
+describe('express routes', () => {
+  before(done => {
+    http.createServer(app).listen(PORT, () => {
       done();
     });
   });
 
-  describe('using a single handler', function (argument) {
-    it('should respond with HTTP 200', function (done) {
+  describe('using a single handler', argument => {
+    it('should respond with HTTP 200', done => {
       var url = dryroutes.urlFor('home');
-      request.get(getUrl(url), function (err, res, body) {
+      request.get(getUrl(url), (err, res, body) => {
         res.statusCode.should.equal(200);
         body.should.equal('home');
         done();
@@ -141,14 +141,14 @@ describe('express routes', function () {
     });
   });
 
-  describe('using an array of handlers', function (argument) {
-    it('should respond with HTTP 200', function (done) {
+  describe('using an array of handlers', argument => {
+    it('should respond with HTTP 200', done => {
       var url = dryroutes.urlFor('user details', {
         params: {
           id: 42
         }
       });
-      request.get(getUrl(url), function (err, res, body) {
+      request.get(getUrl(url), (err, res, body) => {
         res.statusCode.should.equal(200);
         body.should.equal('user 42 details');
         done();
@@ -156,12 +156,12 @@ describe('express routes', function () {
     });
   });
 
-  describe('enforcing https', function (argument) {
-    it('should 301 redirect to the HTTPS page', function (done) {
+  describe('enforcing https', argument => {
+    it('should 301 redirect to the HTTPS page', done => {
       request({
         uri: getUrl('/login'),
         followRedirect: false
-      }, function (err, res, body) {
+      }, (err, res, body) => {
         res.statusCode.should.equal(301);
         res.headers.location.should.equal(getUrl('/login', true));
         done();
